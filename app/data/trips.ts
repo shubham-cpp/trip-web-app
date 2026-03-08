@@ -1,5 +1,5 @@
 export type CountryKey = 'kl' | 'hcmc' | 'hanoi' | 'bangkok';
-export type TopicKey = 'transport' | 'money' | 'food' | 'scams' | 'activities';
+export type TopicKey = 'transport' | 'money' | 'food' | 'scams' | 'activities' | 'checklist';
 export type VerdictType = 'recommended' | 'budget' | 'optional' | 'skip';
 
 export interface CountryMeta {

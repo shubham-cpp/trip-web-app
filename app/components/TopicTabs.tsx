@@ -1,4 +1,4 @@
-import { Plane, Banknote, UtensilsCrossed, ShieldAlert, Map } from 'lucide-react';
+import { Plane, Banknote, UtensilsCrossed, ShieldAlert, Map, ClipboardList } from 'lucide-react';
 import { cn } from '~/lib/utils';
 import type { TopicKey } from '~/data/trips';
 
@@ -8,6 +8,7 @@ const topics: { key: TopicKey; label: string; Icon: React.FC<{ size?: number }> 
   { key: 'food', label: 'Food', Icon: UtensilsCrossed },
   { key: 'scams', label: 'Scams', Icon: ShieldAlert },
   { key: 'activities', label: 'Activities', Icon: Map },
+  { key: 'checklist', label: 'Checklist', Icon: ClipboardList },
 ];
 
 interface Props {
