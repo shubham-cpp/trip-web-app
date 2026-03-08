@@ -18,6 +18,7 @@ export interface TransportOption {
   verdict: VerdictType;
   verdictLabel: string;
   tip?: string;
+  mapsUrl?: string;
 }
 
 export interface TransportData {
@@ -78,6 +79,7 @@ export interface Activity {
   cost: string;
   verdict: 'must' | 'optional' | 'skip';
   note?: string;
+  mapsUrl?: string;
 }
 
 export interface CountryData {
@@ -161,6 +163,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'recommended',
           verdictLabel: 'Take this',
           tip: 'Only bus that goes to both KL Sentral AND Pudu Sentral (near Chinatown). Escalator down to Level 1 Transportation Hub. Buy at counter.',
+          mapsUrl: 'https://maps.google.com/?q=KLIA2+Bus+Terminal+Sepang',
         },
         {
           name: 'SkyBus / Aerobus',
@@ -170,6 +173,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'budget',
           verdictLabel: 'Also fine',
           tip: 'Goes to KL Sentral. Platform A06, Level 1. Counter open 4:30 AM–2:30 AM.',
+          mapsUrl: 'https://maps.google.com/?q=SkyBus+Counter+KLIA2+Sepang',
         },
         {
           name: 'KLIA Transit + MRT Yellow Line',
@@ -179,6 +183,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'optional',
           verdictLabel: 'Rush hour only',
           tip: 'Best during 7–9 AM or 5–8 PM when buses take 2 hrs in traffic. Tap contactless Visa/MC directly at both fare gates.',
+          mapsUrl: 'https://maps.google.com/?q=KLIA+Transit+Station+KLIA2',
         },
         {
           name: 'KLIA Ekspres',
@@ -188,6 +193,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'skip',
           verdictLabel: 'Skip',
           tip: '4× more expensive than the bus for 30 minutes saved. Not worth it unless you\'re late for a meeting.',
+          mapsUrl: 'https://maps.google.com/?q=KLIA+Ekspres+KLIA2+Station',
         },
       ],
     },
@@ -257,12 +263,12 @@ export const tripData: Record<CountryKey, CountryData> = {
       },
     ],
     activities: [
-      { name: 'Batu Caves', cost: 'FREE + ₹105 train', verdict: 'must', note: 'Go before 8 AM. 272 rainbow steps. 140-ft Murugan statue. Keep bags zipped — monkeys steal.' },
-      { name: 'KLCC Fountain Show', cost: 'FREE', verdict: 'must', note: 'Every 30 min, 8–10 PM. Best Petronas Towers photo from the far end of the park.' },
-      { name: 'Thean Hou Temple', cost: 'FREE', verdict: 'must', note: 'Go at sunset — red lanterns light up after 7 PM. Panoramic KL skyline.' },
-      { name: 'Taman Tasik Titiwangsa', cost: 'FREE', verdict: 'must', note: 'THE panoramic KL photo — all towers (Petronas + TRX + KL Tower) reflected in the lake.' },
-      { name: 'KL Forest Eco Park (Canopy Walk)', cost: '~₹770', verdict: 'optional', note: 'Primary rainforest inside the city, 200m canopy walk. Closed Fridays.' },
-      { name: 'KL Tower', cost: '~₹670', verdict: 'optional', note: 'Better views than Petronas because you can see the towers. Skip if budget is tight.' },
+      { name: 'Batu Caves', cost: 'FREE + ₹105 train', verdict: 'must', note: 'Go before 8 AM. 272 rainbow steps. 140-ft Murugan statue. Keep bags zipped — monkeys steal.', mapsUrl: 'https://maps.google.com/?q=Batu+Caves+Kuala+Lumpur' },
+      { name: 'KLCC Fountain Show', cost: 'FREE', verdict: 'must', note: 'Every 30 min, 8–10 PM. Best Petronas Towers photo from the far end of the park.', mapsUrl: 'https://maps.google.com/?q=KLCC+Park+Fountain+Kuala+Lumpur' },
+      { name: 'Thean Hou Temple', cost: 'FREE', verdict: 'must', note: 'Go at sunset — red lanterns light up after 7 PM. Panoramic KL skyline.', mapsUrl: 'https://maps.google.com/?q=Thean+Hou+Temple+Kuala+Lumpur' },
+      { name: 'Taman Tasik Titiwangsa', cost: 'FREE', verdict: 'must', note: 'THE panoramic KL photo — all towers (Petronas + TRX + KL Tower) reflected in the lake.', mapsUrl: 'https://maps.google.com/?q=Taman+Tasik+Titiwangsa+Kuala+Lumpur' },
+      { name: 'KL Forest Eco Park (Canopy Walk)', cost: '~₹770', verdict: 'optional', note: 'Primary rainforest inside the city, 200m canopy walk. Closed Fridays.', mapsUrl: 'https://maps.google.com/?q=KL+Forest+Eco+Park+Canopy+Walk' },
+      { name: 'KL Tower', cost: '~₹670', verdict: 'optional', note: 'Better views than Petronas because you can see the towers. Skip if budget is tight.', mapsUrl: 'https://maps.google.com/?q=KL+Tower+Kuala+Lumpur' },
     ],
   },
 
@@ -279,6 +285,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'recommended',
           verdictLabel: 'Take this',
           tip: 'Exit T2, go RIGHT. See the Burger King. Cross the lane in front of it — Bus 152 stop is right there. Cash only (VND). Ends at Ben Thanh Market, near Pham Ngu Lao backpacker area.',
+          mapsUrl: 'https://maps.google.com/?q=Bus+152+Stop+Tan+Son+Nhat+Airport',
         },
         {
           name: 'Grab / Xanh SM',
@@ -288,6 +295,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'optional',
           verdictLabel: 'If you have bags',
           tip: 'Pickup at T2: exit terminal, go to lanes D1 and D2. Add your card in the app before arriving so you can pay without VND.',
+          mapsUrl: 'https://maps.google.com/?q=Tan+Son+Nhat+Airport+Terminal+2+Pickup',
         },
         {
           name: 'Metered Taxi',
@@ -297,6 +305,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'skip',
           verdictLabel: 'Grab is safer',
           tip: 'If you must: ALL GREEN = Mai Linh (legit). White with green + RED stripe = Vinasun (legit). Snap a plate photo. Fake taxis run scams — "Mailin," "Vinasum," no uniform.',
+          mapsUrl: 'https://maps.google.com/?q=Tan+Son+Nhat+International+Airport',
         },
       ],
     },
@@ -367,12 +376,12 @@ export const tripData: Record<CountryKey, CountryData> = {
       },
     ],
     activities: [
-      { name: 'War Remnants Museum', cost: '₹140', verdict: 'must', note: 'THE reason to visit HCMC. Vietnam War from the Vietnamese perspective. Graphic. Moving. 1.5–2 hrs.' },
-      { name: 'Reunification Palace', cost: '₹140–175', verdict: 'must', note: '10 min walk from museum. Frozen in 1975. Underground war bunkers, original 70s furniture. 1–1.5 hrs.' },
-      { name: 'Saigon Central Post Office', cost: 'FREE', verdict: 'must', note: 'Designed by Gustave Eiffel. Free to enter. 500m from the Palace.' },
-      { name: 'Saigon River waterfront', cost: 'FREE', verdict: 'must', note: 'Best evening views. Free. Better than the ₹840 Bitexco Skydeck.' },
-      { name: 'Cho Lon / Thien Hau Pagoda', cost: 'FREE', verdict: 'optional', note: 'Less touristy Chinatown. Beautiful pagoda, great street food. 30k VND Grab ride.' },
-      { name: 'Bitexco Skydeck', cost: '₹840', verdict: 'skip', note: 'Rooftop cafes and the waterfront give nearly identical views for ₹200 or free.' },
+      { name: 'War Remnants Museum', cost: '₹140', verdict: 'must', note: 'THE reason to visit HCMC. Vietnam War from the Vietnamese perspective. Graphic. Moving. 1.5–2 hrs.', mapsUrl: 'https://maps.google.com/?q=War+Remnants+Museum+Ho+Chi+Minh+City' },
+      { name: 'Reunification Palace', cost: '₹140–175', verdict: 'must', note: '10 min walk from museum. Frozen in 1975. Underground war bunkers, original 70s furniture. 1–1.5 hrs.', mapsUrl: 'https://maps.google.com/?q=Reunification+Palace+Ho+Chi+Minh+City' },
+      { name: 'Saigon Central Post Office', cost: 'FREE', verdict: 'must', note: 'Designed by Gustave Eiffel. Free to enter. 500m from the Palace.', mapsUrl: 'https://maps.google.com/?q=Saigon+Central+Post+Office' },
+      { name: 'Saigon River waterfront', cost: 'FREE', verdict: 'must', note: 'Best evening views. Free. Better than the ₹840 Bitexco Skydeck.', mapsUrl: 'https://maps.google.com/?q=Saigon+River+Waterfront+Ho+Chi+Minh+City' },
+      { name: 'Cho Lon / Thien Hau Pagoda', cost: 'FREE', verdict: 'optional', note: 'Less touristy Chinatown. Beautiful pagoda, great street food. 30k VND Grab ride.', mapsUrl: 'https://maps.google.com/?q=Thien+Hau+Pagoda+Cholon+Ho+Chi+Minh' },
+      { name: 'Bitexco Skydeck', cost: '₹840', verdict: 'skip', note: 'Rooftop cafes and the waterfront give nearly identical views for ₹200 or free.', mapsUrl: 'https://maps.google.com/?q=Bitexco+Financial+Tower+Saigon+Skydeck' },
     ],
   },
 
@@ -389,6 +398,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'recommended',
           verdictLabel: 'Take this',
           tip: 'Bright orange bus with "86" sign right outside T1. Get off at Long Bien Bus Interchange — short walk to Old Quarter. AC, WiFi, luggage space. Cash only.',
+          mapsUrl: 'https://maps.google.com/?q=Bus+86+Stop+Noi+Bai+Airport+Hanoi',
         },
         {
           name: 'Bus 17',
@@ -398,6 +408,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'budget',
           verdictLabel: 'Ultrabudget',
           tip: 'Exit terminal, go right, walk ~200m past car park. T1 only. Good if you have light luggage.',
+          mapsUrl: 'https://maps.google.com/?q=Bus+17+Stop+Noi+Bai+Airport+Hanoi',
         },
         {
           name: 'Grab / Xanh SM',
@@ -407,6 +418,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'optional',
           verdictLabel: 'Worth it if tired',
           tip: 'Surge pricing during peak hours. Xanh SM is often slightly cheaper than Grab.',
+          mapsUrl: 'https://maps.google.com/?q=Noi+Bai+International+Airport+Hanoi',
         },
       ],
     },
@@ -476,13 +488,13 @@ export const tripData: Record<CountryKey, CountryData> = {
       },
     ],
     activities: [
-      { name: 'Ninh Binh Day Trip', cost: '~₹3,300 all-in', verdict: 'must', note: 'The best single day of the trip. Bus (₹615 each way) + Mua Cave (₹340) + Kayak (₹700 for 2) + Rowing boat (₹850) + food.' },
-      { name: 'Mua Cave (500-step climb)', cost: '₹340', verdict: 'must', note: 'Part of Ninh Binh. Best viewpoint in northern Vietnam. Dragon statue at peak. Go before crowds.' },
-      { name: 'Trang An Kayaking', cost: '₹700 for 2', verdict: 'must', note: 'Part of Ninh Binh. 2–3 hrs self-paddling through UNESCO karst landscape.' },
-      { name: 'Hoan Kiem Lake + Ngoc Son Temple', cost: '₹100', verdict: 'must', note: 'Go at sunset. Red Huc Bridge, Turtle Tower. Peaceful even in tourist season.' },
-      { name: 'Ho Chi Minh Mausoleum', cost: '₹85', verdict: 'must', note: 'Open Sat (closed Mon & Fri). Dress code: shoulders + knees covered. Go early — opens 8 AM.' },
-      { name: 'Water Puppet Show', cost: '₹340–560', verdict: 'optional', note: '50-min show at Thang Long Theater. Uniquely Vietnamese art form. Most visitors say worth it.' },
-      { name: 'Temple of Literature', cost: '₹100', verdict: 'optional', note: 'Vietnam\'s first university, 1070 AD. Beautiful courtyard architecture. 30 min visit.' },
+      { name: 'Ninh Binh Day Trip', cost: '~₹3,300 all-in', verdict: 'must', note: 'The best single day of the trip. Bus (₹615 each way) + Mua Cave (₹340) + Kayak (₹700 for 2) + Rowing boat (₹850) + food.', mapsUrl: 'https://maps.google.com/?q=Ninh+Binh+Vietnam' },
+      { name: 'Mua Cave (500-step climb)', cost: '₹340', verdict: 'must', note: 'Part of Ninh Binh. Best viewpoint in northern Vietnam. Dragon statue at peak. Go before crowds.', mapsUrl: 'https://maps.google.com/?q=Mua+Cave+Ninh+Binh' },
+      { name: 'Trang An Kayaking', cost: '₹700 for 2', verdict: 'must', note: 'Part of Ninh Binh. 2–3 hrs self-paddling through UNESCO karst landscape.', mapsUrl: 'https://maps.google.com/?q=Trang+An+Landscape+Complex+Ninh+Binh' },
+      { name: 'Hoan Kiem Lake + Ngoc Son Temple', cost: '₹100', verdict: 'must', note: 'Go at sunset. Red Huc Bridge, Turtle Tower. Peaceful even in tourist season.', mapsUrl: 'https://maps.google.com/?q=Hoan+Kiem+Lake+Hanoi' },
+      { name: 'Ho Chi Minh Mausoleum', cost: '₹85', verdict: 'must', note: 'Open Sat (closed Mon & Fri). Dress code: shoulders + knees covered. Go early — opens 8 AM.', mapsUrl: 'https://maps.google.com/?q=Ho+Chi+Minh+Mausoleum+Hanoi' },
+      { name: 'Water Puppet Show', cost: '₹340–560', verdict: 'optional', note: '50-min show at Thang Long Theater. Uniquely Vietnamese art form. Most visitors say worth it.', mapsUrl: 'https://maps.google.com/?q=Thang+Long+Water+Puppet+Theatre+Hanoi' },
+      { name: 'Temple of Literature', cost: '₹100', verdict: 'optional', note: 'Vietnam\'s first university, 1070 AD. Beautiful courtyard architecture. 30 min visit.', mapsUrl: 'https://maps.google.com/?q=Temple+of+Literature+Hanoi' },
     ],
   },
 
@@ -499,6 +511,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'recommended',
           verdictLabel: 'Take this',
           tip: 'Follow "Train to City" signs down to Basement Level B. Handle SuperRich exchange here first. Tap contactless Visa/MC at fare gates — no token needed. Phayathai (45 THB) → BTS to Siam/Silom. Makkasan (35 THB) → MRT to Sukhumvit/Chinatown.',
+          mapsUrl: 'https://maps.google.com/?q=Suvarnabhumi+Airport+Rail+Link+Station',
         },
         {
           name: 'S1 Public Bus',
@@ -508,6 +521,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'budget',
           verdictLabel: 'Near Khao San only',
           tip: 'Direct to Khao San Road. Level 1, Exit 7. Every 30 min, 6 AM–8 PM. Only useful if your hostel is near Khao San.',
+          mapsUrl: 'https://maps.google.com/?q=Suvarnabhumi+Airport+Bus+S1+Stop',
         },
         {
           name: 'Official Metered Taxi',
@@ -517,6 +531,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'optional',
           verdictLabel: 'Late night / heavy bags',
           tip: 'Level 1 "TAXI – METER ONLY" kiosk — they print a receipt slip. Add: 50 THB airport surcharge + ~70 THB expressway tolls. Pro tip: go to 4th floor Departures to hail a returning cab — no surcharge.',
+          mapsUrl: 'https://maps.google.com/?q=Suvarnabhumi+Airport+Taxi+Level+1',
         },
         {
           name: 'Grab / Bolt',
@@ -526,6 +541,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           verdict: 'skip',
           verdictLabel: 'Only with data',
           tip: 'Level 1, Gate 4. Bolt is often 50% cheaper than Grab for the same route. You need a SIM/data before using these — get it at the basement first.',
+          mapsUrl: 'https://maps.google.com/?q=Suvarnabhumi+Airport+Grab+Pickup+Gate+4',
         },
       ],
     },
@@ -594,14 +610,14 @@ export const tripData: Record<CountryKey, CountryData> = {
       },
     ],
     activities: [
-      { name: 'Wat Arun (climb the prang)', cost: '₹580', verdict: 'must', note: 'Climb the steep central tower — genuinely adventurous. Porcelain mosaic art. Best in late afternoon golden light. Ferry from east bank: 4 THB.' },
-      { name: 'Wat Saket / Golden Mount', cost: '₹145', verdict: 'must', note: 'Best budget viewpoint in Bangkok. 360° panoramic views from 80m. Compare: MahaNakhon charges ₹2,900 for similar views.' },
-      { name: 'Free Vipassana at Wat Mahathat', cost: 'FREE', verdict: 'must', note: 'Walking + sitting meditation taught in English by monks. 1–3 PM daily. Small class, personal instruction. Unreplicable.' },
-      { name: 'Yaowarat Chinatown night walk', cost: 'FREE', verdict: 'must', note: 'MRT to Wat Mangkon. 1.5 km of neon lights and smoking woks. Street food feast for ₹300–500.' },
-      { name: 'Lumpini Park (monitor lizards)', cost: 'FREE', verdict: 'must', note: '300–400 wild 1–2m monitor lizards roaming free. Go early morning — locals do Tai Chi at sunrise.' },
-      { name: 'Grand Palace + Wat Phra Kaew', cost: '₹1,450', verdict: 'optional', note: 'Sacred Emerald Buddha exists nowhere else. 218,000 sqm of royal architecture. Go at 8:30 AM opening. Worth it if budget allows.' },
-      { name: 'Wat Traimit (gold Buddha)', cost: '₹115', verdict: 'optional', note: 'World\'s largest solid gold Buddha (5.5 tons). Quick 30-min visit, in Chinatown.' },
-      { name: 'MahaNakhon Skywalk', cost: '₹2,900–3,500', verdict: 'skip', note: 'Wat Saket gives 360° views for ₹145. This is pure tourist tax.' },
+      { name: 'Wat Arun (climb the prang)', cost: '₹580', verdict: 'must', note: 'Climb the steep central tower — genuinely adventurous. Porcelain mosaic art. Best in late afternoon golden light. Ferry from east bank: 4 THB.', mapsUrl: 'https://maps.google.com/?q=Wat+Arun+Bangkok' },
+      { name: 'Wat Saket / Golden Mount', cost: '₹145', verdict: 'must', note: 'Best budget viewpoint in Bangkok. 360° panoramic views from 80m. Compare: MahaNakhon charges ₹2,900 for similar views.', mapsUrl: 'https://maps.google.com/?q=Wat+Saket+Golden+Mount+Bangkok' },
+      { name: 'Free Vipassana at Wat Mahathat', cost: 'FREE', verdict: 'must', note: 'Walking + sitting meditation taught in English by monks. 1–3 PM daily. Small class, personal instruction. Unreplicable.', mapsUrl: 'https://maps.google.com/?q=Wat+Mahathat+Yuwaratrangsarit+Bangkok' },
+      { name: 'Yaowarat Chinatown night walk', cost: 'FREE', verdict: 'must', note: 'MRT to Wat Mangkon. 1.5 km of neon lights and smoking woks. Street food feast for ₹300–500.', mapsUrl: 'https://maps.google.com/?q=Yaowarat+Chinatown+Bangkok' },
+      { name: 'Lumpini Park (monitor lizards)', cost: 'FREE', verdict: 'must', note: '300–400 wild 1–2m monitor lizards roaming free. Go early morning — locals do Tai Chi at sunrise.', mapsUrl: 'https://maps.google.com/?q=Lumpini+Park+Bangkok' },
+      { name: 'Grand Palace + Wat Phra Kaew', cost: '₹1,450', verdict: 'optional', note: 'Sacred Emerald Buddha exists nowhere else. 218,000 sqm of royal architecture. Go at 8:30 AM opening. Worth it if budget allows.', mapsUrl: 'https://maps.google.com/?q=Grand+Palace+Bangkok' },
+      { name: 'Wat Traimit (gold Buddha)', cost: '₹115', verdict: 'optional', note: 'World\'s largest solid gold Buddha (5.5 tons). Quick 30-min visit, in Chinatown.', mapsUrl: 'https://maps.google.com/?q=Wat+Traimit+Golden+Buddha+Bangkok' },
+      { name: 'MahaNakhon Skywalk', cost: '₹2,900–3,500', verdict: 'skip', note: 'Wat Saket gives 360° views for ₹145. This is pure tourist tax.', mapsUrl: 'https://maps.google.com/?q=MahaNakhon+Skywalk+Bangkok' },
     ],
   },
 };

@@ -1,3 +1,4 @@
+import { MapPin } from 'lucide-react';
 import { cn } from '~/lib/utils';
 import { tripData, type CountryKey } from '~/data/trips';
 import type { Activity } from '~/data/trips';
@@ -92,6 +93,17 @@ function ActivityCard({ activity }: { activity: Activity }) {
           {activity.name}
         </span>
         <div className="flex items-center gap-2 shrink-0">
+          {activity.mapsUrl && (
+            <a
+              href={activity.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-[#5A5750] hover:text-[#9E9A8E] transition-colors"
+              aria-label={`Open ${activity.name} on Google Maps`}
+            >
+              <MapPin className="w-3.5 h-3.5" />
+            </a>
+          )}
           <span
             className={cn(
               'font-mono text-[0.72rem]',

@@ -1,3 +1,4 @@
+import { MapPin } from 'lucide-react';
 import { cn } from '~/lib/utils';
 import { tripData, type CountryKey } from '~/data/trips';
 
@@ -60,14 +61,27 @@ export function TransportSection({ country }: Props) {
                 <span className="text-[0.72rem] text-muted">{opt.duration}</span>
               </div>
             </div>
-            <span
-              className={cn(
-                verdictClass[opt.verdict],
-                'text-[0.68rem] px-2.5 py-[3px] rounded-full whitespace-nowrap shrink-0'
+            <div className="flex items-center gap-2 shrink-0">
+              {opt.mapsUrl && (
+                <a
+                  href={opt.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-[#5A5750] hover:text-[#9E9A8E] transition-colors"
+                  aria-label={`Open ${opt.name} on Google Maps`}
+                >
+                  <MapPin className="w-3.5 h-3.5" />
+                </a>
               )}
-            >
-              {opt.verdictLabel}
-            </span>
+              <span
+                className={cn(
+                  verdictClass[opt.verdict],
+                  'text-[0.68rem] px-2.5 py-[3px] rounded-full whitespace-nowrap shrink-0'
+                )}
+              >
+                {opt.verdictLabel}
+              </span>
+            </div>
           </div>
           {opt.tip && (
             <p className="text-[0.78rem] text-[#9E9A8E] leading-relaxed pt-2 border-t border-white/5">
