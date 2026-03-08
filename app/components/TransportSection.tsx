@@ -1,3 +1,4 @@
+import { cn } from '~/lib/utils';
 import { tripData, type CountryKey } from '~/data/trips';
 
 interface Props {
@@ -17,30 +18,12 @@ export function TransportSection({ country }: Props) {
   return (
     <div className="section-enter p-4 flex flex-col gap-3">
       {/* Airport label */}
-      <div
-        style={{
-          fontSize: '0.7rem',
-          color: '#7A776C',
-          fontFamily: '"DM Mono", monospace',
-          letterSpacing: '0.05em',
-          textTransform: 'uppercase',
-        }}
-      >
+      <div className="text-[0.7rem] text-muted font-mono tracking-[0.05em] uppercase">
         {airportName} · {terminal}
       </div>
 
       {/* Section heading */}
-      <h2
-        style={{
-          fontFamily: '"Cormorant Garamond", Georgia, serif',
-          fontStyle: 'italic',
-          fontSize: '1.5rem',
-          fontWeight: 600,
-          color: '#F5F0E8',
-          lineHeight: 1.1,
-          marginBottom: '4px',
-        }}
-      >
+      <h2 className="font-display italic text-2xl font-semibold text-foreground leading-tight mb-1">
         Airport → City
       </h2>
 
@@ -48,75 +31,46 @@ export function TransportSection({ country }: Props) {
       {options.map((opt, i) => (
         <div
           key={i}
-          style={{
-            backgroundColor: '#141410',
-            border: '1px solid rgba(255,255,255,0.07)',
-            borderRadius: '12px',
-            padding: '14px 16px',
-            opacity: opt.verdict === 'skip' ? 0.7 : 1,
-          }}
+          className={cn(
+            'bg-card border border-border rounded-xl px-4 py-3.5',
+            opt.verdict === 'skip' && 'opacity-70'
+          )}
         >
           <div className="flex items-start justify-between gap-3 mb-2">
             <div>
               <div
-                style={{
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  color: opt.verdict === 'skip' ? '#7A776C' : '#F5F0E8',
-                  textDecoration: opt.verdict === 'skip' ? 'line-through' : 'none',
-                  marginBottom: '2px',
-                }}
+                className={cn(
+                  'text-[0.9rem] font-medium mb-0.5',
+                  opt.verdict === 'skip'
+                    ? 'text-muted line-through'
+                    : 'text-foreground'
+                )}
               >
                 {opt.name}
               </div>
               <div className="flex items-center gap-2 flex-wrap">
-                <span
-                  style={{
-                    fontFamily: '"DM Mono", monospace',
-                    fontSize: '0.78rem',
-                    color: '#D4A017',
-                    fontWeight: 400,
-                  }}
-                >
+                <span className="font-mono text-[0.78rem] text-gold">
                   {opt.priceLocal}
                 </span>
-                <span style={{ color: '#7A776C', fontSize: '0.7rem' }}>·</span>
-                <span
-                  style={{
-                    fontFamily: '"DM Mono", monospace',
-                    fontSize: '0.72rem',
-                    color: '#7A776C',
-                  }}
-                >
+                <span className="text-muted text-[0.7rem]">·</span>
+                <span className="font-mono text-[0.72rem] text-muted">
                   {opt.priceINR}
                 </span>
-                <span style={{ color: '#7A776C', fontSize: '0.7rem' }}>·</span>
-                <span style={{ fontSize: '0.72rem', color: '#7A776C' }}>{opt.duration}</span>
+                <span className="text-muted text-[0.7rem]">·</span>
+                <span className="text-[0.72rem] text-muted">{opt.duration}</span>
               </div>
             </div>
             <span
-              className={verdictClass[opt.verdict]}
-              style={{
-                fontSize: '0.68rem',
-                padding: '3px 10px',
-                borderRadius: '999px',
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
-              }}
+              className={cn(
+                verdictClass[opt.verdict],
+                'text-[0.68rem] px-2.5 py-[3px] rounded-full whitespace-nowrap shrink-0'
+              )}
             >
               {opt.verdictLabel}
             </span>
           </div>
           {opt.tip && (
-            <p
-              style={{
-                fontSize: '0.78rem',
-                color: '#9E9A8E',
-                lineHeight: 1.5,
-                paddingTop: '8px',
-                borderTop: '1px solid rgba(255,255,255,0.05)',
-              }}
-            >
+            <p className="text-[0.78rem] text-[#9E9A8E] leading-relaxed pt-2 border-t border-white/5">
               {opt.tip}
             </p>
           )}

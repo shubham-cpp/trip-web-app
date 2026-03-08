@@ -1,13 +1,14 @@
+import { cn } from '~/lib/utils';
 import { tripData, cardStrategy, type CountryKey } from '~/data/trips';
 
 interface Props {
   country: CountryKey;
 }
 
-const cardTypeColor: Record<string, string> = {
-  primary: '#4CAF7D',
-  atm: '#D4A017',
-  backup: '#7A776C',
+const cardTypeClasses: Record<string, string> = {
+  primary: 'bg-success/10 text-success border-success/25',
+  atm: 'bg-gold/10 text-gold border-gold/25',
+  backup: 'bg-muted/10 text-muted border-muted/25',
 };
 
 const cardTypeLabel: Record<string, string> = {
@@ -19,65 +20,37 @@ const cardTypeLabel: Record<string, string> = {
 export function MoneySection({ country }: Props) {
   const { airportExchange, bestChangers, atms, atmNote } = tripData[country].money;
 
-  const airportBg =
-    airportExchange.verdict === 'yes-basement'
-      ? 'rgba(76, 175, 125, 0.08)'
-      : 'rgba(224, 82, 82, 0.07)';
-  const airportBorder =
-    airportExchange.verdict === 'yes-basement'
-      ? 'rgba(76, 175, 125, 0.25)'
-      : 'rgba(224, 82, 82, 0.25)';
-  const airportColor =
-    airportExchange.verdict === 'yes-basement' ? '#4CAF7D' : '#E05252';
+  const airportIsGood = airportExchange.verdict === 'yes-basement';
 
   return (
     <div className="section-enter p-4 flex flex-col gap-5">
       {/* Section heading */}
-      <h2
-        style={{
-          fontFamily: '"Cormorant Garamond", Georgia, serif',
-          fontStyle: 'italic',
-          fontSize: '1.5rem',
-          fontWeight: 600,
-          color: '#F5F0E8',
-          lineHeight: 1.1,
-        }}
-      >
+      <h2 className="font-display italic text-2xl font-semibold text-foreground leading-tight">
         Money & ATMs
       </h2>
 
       {/* Airport Exchange */}
       <div>
-        <div
-          style={{
-            fontSize: '0.65rem',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#7A776C',
-            marginBottom: '8px',
-          }}
-        >
+        <div className="text-[0.65rem] tracking-[0.08em] uppercase text-muted mb-2">
           Exchange at airport?
         </div>
         <div
-          style={{
-            backgroundColor: airportBg,
-            border: `1px solid ${airportBorder}`,
-            borderRadius: '12px',
-            padding: '12px 14px',
-          }}
+          className={cn(
+            'rounded-xl px-3.5 py-3 border',
+            airportIsGood
+              ? 'bg-success/8 border-success/25'
+              : 'bg-danger/7 border-danger/25'
+          )}
         >
           <div
-            style={{
-              fontSize: '0.85rem',
-              fontWeight: 500,
-              color: airportColor,
-              marginBottom: '4px',
-            }}
+            className={cn(
+              'text-[0.85rem] font-medium mb-1',
+              airportIsGood ? 'text-success' : 'text-danger'
+            )}
           >
             {airportExchange.summary}
           </div>
-          <p style={{ fontSize: '0.78rem', color: '#9E9A8E', lineHeight: 1.5 }}>
+          <p className="text-[0.78rem] text-[#9E9A8E] leading-relaxed">
             {airportExchange.detail}
           </p>
         </div>
@@ -85,35 +58,22 @@ export function MoneySection({ country }: Props) {
 
       {/* Best Changers */}
       <div>
-        <div
-          style={{
-            fontSize: '0.65rem',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#7A776C',
-            marginBottom: '8px',
-          }}
-        >
+        <div className="text-[0.65rem] tracking-[0.08em] uppercase text-muted mb-2">
           Best money changers
         </div>
         <div className="flex flex-col gap-2">
           {bestChangers.map((c, i) => (
             <div
               key={i}
-              style={{
-                backgroundColor: '#141410',
-                border: '1px solid rgba(255,255,255,0.07)',
-                borderRadius: '12px',
-                padding: '12px 14px',
-              }}
+              className="bg-card border border-border rounded-xl px-3.5 py-3"
             >
-              <div style={{ fontSize: '0.88rem', fontWeight: 500, color: '#F5F0E8', marginBottom: '2px' }}>
+              <div className="text-[0.88rem] font-medium text-foreground mb-0.5">
                 {c.name}
               </div>
-              <div style={{ fontSize: '0.72rem', color: '#D4A017', fontFamily: '"DM Mono", monospace', marginBottom: '6px' }}>
+              <div className="text-[0.72rem] text-gold font-mono mb-1.5">
                 {c.location}
               </div>
-              <p style={{ fontSize: '0.76rem', color: '#9E9A8E', lineHeight: 1.5 }}>{c.tip}</p>
+              <p className="text-[0.76rem] text-[#9E9A8E] leading-relaxed">{c.tip}</p>
             </div>
           ))}
         </div>
@@ -121,58 +81,29 @@ export function MoneySection({ country }: Props) {
 
       {/* ATMs */}
       <div>
-        <div
-          style={{
-            fontSize: '0.65rem',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#7A776C',
-            marginBottom: '8px',
-          }}
-        >
+        <div className="text-[0.65rem] tracking-[0.08em] uppercase text-muted mb-2">
           ATMs
         </div>
-        <div
-          style={{
-            backgroundColor: '#141410',
-            border: '1px solid rgba(255,255,255,0.07)',
-            borderRadius: '12px',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="bg-card border border-border rounded-xl overflow-hidden">
           {/* Best ATMs */}
           {atms.best.map((atm, i) => (
             <div
               key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '10px 14px',
-                borderBottom:
-                  i < atms.best.length - 1 || atms.avoid.length > 0
-                    ? '1px solid rgba(255,255,255,0.05)'
-                    : 'none',
-              }}
+              className={cn(
+                'flex items-center justify-between px-3.5 py-2.5',
+                (i < atms.best.length - 1 || atms.avoid.length > 0) && 'border-b border-white/5'
+              )}
             >
               <div>
-                <span style={{ fontSize: '0.83rem', fontWeight: 500, color: '#F5F0E8' }}>
+                <span className="text-[0.83rem] font-medium text-foreground">
                   {atm.bank}
                 </span>
-                <span
-                  style={{
-                    fontSize: '0.7rem',
-                    fontFamily: '"DM Mono", monospace',
-                    color: '#7A776C',
-                    marginLeft: '8px',
-                  }}
-                >
+                <span className="text-[0.7rem] font-mono text-muted ml-2">
                   max {atm.maxPerTxn}
                 </span>
               </div>
               <span
-                className={`atm-${atm.verdict}`}
-                style={{ fontSize: '0.75rem', fontFamily: '"DM Mono", monospace', fontWeight: 500 }}
+                className={cn(`atm-${atm.verdict}`, 'text-xs font-mono font-medium')}
               >
                 {atm.fee}
               </span>
@@ -182,83 +113,53 @@ export function MoneySection({ country }: Props) {
           {atms.avoid.map((atm, i) => (
             <div
               key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '10px 14px',
-                backgroundColor: 'rgba(224, 82, 82, 0.05)',
-                borderTop: '1px solid rgba(224, 82, 82, 0.12)',
-              }}
+              className="flex items-center justify-between px-3.5 py-2.5 bg-danger/5 border-t border-danger/12"
             >
               <div>
-                <span style={{ fontSize: '0.83rem', color: '#E05252', textDecoration: 'line-through' }}>
+                <span className="text-[0.83rem] text-danger line-through">
                   {atm.bank}
                 </span>
               </div>
-              <span className="atm-avoid" style={{ fontSize: '0.75rem', fontFamily: '"DM Mono", monospace' }}>
+              <span className="atm-avoid text-xs font-mono">
                 {atm.fee}
               </span>
             </div>
           ))}
         </div>
         {atmNote && (
-          <p style={{ fontSize: '0.74rem', color: '#7A776C', lineHeight: 1.5, marginTop: '8px', padding: '0 2px' }}>
+          <p className="text-[0.74rem] text-muted leading-relaxed mt-2 px-0.5">
             {atmNote}
           </p>
         )}
       </div>
 
-      {/* Divider */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: '4px' }}>
-        <div
-          style={{
-            fontSize: '0.65rem',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#7A776C',
-            marginBottom: '8px',
-          }}
-        >
+      {/* Card strategy */}
+      <div className="border-t border-border pt-1">
+        <div className="text-[0.65rem] tracking-[0.08em] uppercase text-muted mb-2">
           Card strategy (all countries)
         </div>
         <div className="flex flex-col gap-2">
           {cardStrategy.map((c, i) => (
             <div
               key={i}
-              style={{
-                backgroundColor: '#141410',
-                border: '1px solid rgba(255,255,255,0.07)',
-                borderRadius: '12px',
-                padding: '12px 14px',
-                display: 'flex',
-                gap: '12px',
-                alignItems: 'flex-start',
-              }}
+              className="bg-card border border-border rounded-xl px-3.5 py-3 flex gap-3 items-start"
             >
               <span
-                style={{
-                  fontSize: '0.62rem',
-                  padding: '2px 7px',
-                  borderRadius: '999px',
-                  backgroundColor: `${cardTypeColor[c.type]}18`,
-                  color: cardTypeColor[c.type],
-                  border: `1px solid ${cardTypeColor[c.type]}40`,
-                  fontFamily: '"DM Mono", monospace',
-                  flexShrink: 0,
-                  marginTop: '2px',
-                }}
+                className={cn(
+                  'text-[0.62rem] px-[7px] py-0.5 rounded-full border font-mono shrink-0 mt-0.5',
+                  cardTypeClasses[c.type]
+                )}
               >
                 {cardTypeLabel[c.type]}
               </span>
               <div>
-                <div style={{ fontSize: '0.83rem', fontWeight: 500, color: '#F5F0E8', marginBottom: '2px' }}>
+                <div className="text-[0.83rem] font-medium text-foreground mb-0.5">
                   {c.card}
                 </div>
-                <div style={{ fontSize: '0.72rem', color: '#D4A017', marginBottom: '4px', fontFamily: '"DM Mono", monospace' }}>
+                <div className="text-[0.72rem] text-gold mb-1 font-mono">
                   {c.use}
                 </div>
-                <p style={{ fontSize: '0.75rem', color: '#9E9A8E', lineHeight: 1.5 }}>{c.why}</p>
+                <p className="text-[0.75rem] text-[#9E9A8E] leading-relaxed">{c.why}</p>
               </div>
             </div>
           ))}
@@ -266,20 +167,13 @@ export function MoneySection({ country }: Props) {
       </div>
 
       {/* DCC Warning */}
-      <div
-        style={{
-          background: 'linear-gradient(135deg, rgba(224, 82, 82, 0.1) 0%, rgba(20, 20, 16, 0.9) 100%)',
-          border: '1px solid rgba(224, 82, 82, 0.3)',
-          borderRadius: '12px',
-          padding: '14px',
-        }}
-      >
-        <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#E05252', marginBottom: '6px' }}>
+      <div className="bg-danger-gradient border border-danger/30 rounded-xl p-3.5">
+        <div className="text-[0.78rem] font-semibold text-danger mb-1.5">
           ⚠ Always decline DCC
         </div>
-        <p style={{ fontSize: '0.76rem', color: '#C8C4BA', lineHeight: 1.6 }}>
+        <p className="text-[0.76rem] text-[#C8C4BA] leading-relaxed">
           When an ATM or card machine asks "Pay in INR?" or "Guaranteed conversion?" — always choose
-          the <strong style={{ color: '#F5F0E8' }}>local currency</strong>. DCC adds a secret 3–7% markup on
+          the <strong className="text-foreground">local currency</strong>. DCC adds a secret 3–7% markup on
           top of any card fees. Thailand ATMs are the most aggressive about this.
         </p>
       </div>

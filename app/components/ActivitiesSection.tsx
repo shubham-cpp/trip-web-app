@@ -1,3 +1,4 @@
+import { cn } from '~/lib/utils';
 import { tripData, type CountryKey } from '~/data/trips';
 import type { Activity } from '~/data/trips';
 
@@ -5,10 +6,10 @@ interface Props {
   country: CountryKey;
 }
 
-const verdictConfig: Record<string, { label: string; className: string }> = {
-  must: { label: 'MUST', className: 'activity-must' },
-  optional: { label: 'OPTIONAL', className: 'activity-optional' },
-  skip: { label: 'SKIP', className: 'activity-skip' },
+const verdictConfig: Record<string, { label: string; className: string; headingClass: string }> = {
+  must: { label: 'MUST', className: 'activity-must', headingClass: 'text-success' },
+  optional: { label: 'OPTIONAL', className: 'activity-optional', headingClass: 'text-gold' },
+  skip: { label: 'SKIP', className: 'activity-skip', headingClass: 'text-muted' },
 };
 
 export function ActivitiesSection({ country }: Props) {
@@ -21,37 +22,19 @@ export function ActivitiesSection({ country }: Props) {
   return (
     <div className="section-enter p-4 flex flex-col gap-5">
       {/* Section heading */}
-      <h2
-        style={{
-          fontFamily: '"Cormorant Garamond", Georgia, serif',
-          fontStyle: 'italic',
-          fontSize: '1.5rem',
-          fontWeight: 600,
-          color: '#F5F0E8',
-          lineHeight: 1.1,
-        }}
-      >
+      <h2 className="font-display italic text-2xl font-semibold text-foreground leading-tight">
         Activities
       </h2>
 
       {/* Must do */}
       {must.length > 0 && (
         <div>
-          <div
-            style={{
-              fontSize: '0.65rem',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: '#4CAF7D',
-              marginBottom: '8px',
-            }}
-          >
+          <div className={cn('text-[0.65rem] tracking-[0.08em] uppercase mb-2', verdictConfig.must.headingClass)}>
             Must do
           </div>
           <div className="flex flex-col gap-2">
             {must.map((a, i) => (
               <ActivityCard key={i} activity={a} />
-
             ))}
           </div>
         </div>
@@ -60,21 +43,12 @@ export function ActivitiesSection({ country }: Props) {
       {/* Optional */}
       {optional.length > 0 && (
         <div>
-          <div
-            style={{
-              fontSize: '0.65rem',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: '#D4A017',
-              marginBottom: '8px',
-            }}
-          >
+          <div className={cn('text-[0.65rem] tracking-[0.08em] uppercase mb-2', verdictConfig.optional.headingClass)}>
             Optional
           </div>
           <div className="flex flex-col gap-2">
             {optional.map((a, i) => (
               <ActivityCard key={i} activity={a} />
-
             ))}
           </div>
         </div>
@@ -83,21 +57,12 @@ export function ActivitiesSection({ country }: Props) {
       {/* Skip */}
       {skip.length > 0 && (
         <div>
-          <div
-            style={{
-              fontSize: '0.65rem',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: '#7A776C',
-              marginBottom: '8px',
-            }}
-          >
+          <div className={cn('text-[0.65rem] tracking-[0.08em] uppercase mb-2', verdictConfig.skip.headingClass)}>
             Skip
           </div>
           <div className="flex flex-col gap-2">
             {skip.map((a, i) => (
               <ActivityCard key={i} activity={a} />
-
             ))}
           </div>
         </div>
@@ -112,51 +77,41 @@ function ActivityCard({ activity }: { activity: Activity }) {
 
   return (
     <div
-      style={{
-        backgroundColor: '#141410',
-        border: '1px solid rgba(255,255,255,0.07)',
-        borderRadius: '12px',
-        padding: '12px 14px',
-        opacity: isSkip ? 0.65 : 1,
-      }}
+      className={cn(
+        'bg-card border border-border rounded-xl px-3.5 py-3',
+        isSkip && 'opacity-65'
+      )}
     >
       <div className="flex items-start justify-between gap-3 mb-1">
         <span
-          style={{
-            fontSize: '0.88rem',
-            fontWeight: 500,
-            color: isSkip ? '#7A776C' : '#F5F0E8',
-            textDecoration: isSkip ? 'line-through' : 'none',
-          }}
+          className={cn(
+            'text-[0.88rem] font-medium',
+            isSkip ? 'text-muted line-through' : 'text-foreground'
+          )}
         >
           {activity.name}
         </span>
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
           <span
-            style={{
-              fontFamily: '"DM Mono", monospace',
-              fontSize: '0.72rem',
-              color: activity.cost === 'FREE' ? '#4CAF7D' : '#D4A017',
-            }}
+            className={cn(
+              'font-mono text-[0.72rem]',
+              activity.cost === 'FREE' ? 'text-success' : 'text-gold'
+            )}
           >
             {activity.cost}
           </span>
           <span
-            className={cfg.className}
-            style={{
-              fontSize: '0.58rem',
-              padding: '2px 7px',
-              borderRadius: '999px',
-              fontFamily: '"DM Mono", monospace',
-              letterSpacing: '0.04em',
-            }}
+            className={cn(
+              cfg.className,
+              'text-[0.58rem] px-[7px] py-0.5 rounded-full font-mono tracking-[0.04em]'
+            )}
           >
             {cfg.label}
           </span>
         </div>
       </div>
       {activity.note && (
-        <p style={{ fontSize: '0.75rem', color: '#9E9A8E', lineHeight: 1.5 }}>{activity.note}</p>
+        <p className="text-xs text-[#9E9A8E] leading-relaxed">{activity.note}</p>
       )}
     </div>
   );

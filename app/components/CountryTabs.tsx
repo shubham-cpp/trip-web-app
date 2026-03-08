@@ -1,3 +1,4 @@
+import { cn } from '~/lib/utils';
 import { countries, type CountryKey } from '~/data/trips';
 
 interface Props {
@@ -5,12 +6,23 @@ interface Props {
   onChange: (key: CountryKey) => void;
 }
 
+const countryTextClass: Record<CountryKey, string> = {
+  kl: 'text-kl',
+  hcmc: 'text-hcmc',
+  hanoi: 'text-hanoi',
+  bangkok: 'text-bangkok',
+};
+
+const countryBgClass: Record<CountryKey, string> = {
+  kl: 'bg-kl',
+  hcmc: 'bg-hcmc',
+  hanoi: 'bg-hanoi',
+  bangkok: 'bg-bangkok',
+};
+
 export function CountryTabs({ active, onChange }: Props) {
   return (
-    <div
-      className="flex"
-      style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}
-    >
+    <div className="flex border-b border-border">
       {(Object.keys(countries) as CountryKey[]).map((key) => {
         const meta = countries[key];
         const isActive = active === key;
@@ -18,45 +30,32 @@ export function CountryTabs({ active, onChange }: Props) {
           <button
             key={key}
             onClick={() => onChange(key)}
-            className="flex-1 flex flex-col items-center gap-0.5 py-3 relative transition-colors"
-            style={{ minHeight: '56px' }}
+            className="flex-1 flex flex-col items-center gap-0.5 py-3 relative transition-colors min-h-14"
           >
-            <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>{meta.flag}</span>
+            <span className="text-xl leading-none">{meta.flag}</span>
             <span
-              style={{
-                fontSize: '0.7rem',
-                fontFamily: '"DM Sans", sans-serif',
-                fontWeight: isActive ? 500 : 400,
-                color: isActive ? meta.colorVar : '#7A776C',
-                transition: 'color 0.15s ease',
-                letterSpacing: '0.02em',
-              }}
+              className={cn(
+                'text-[0.7rem] font-sans tracking-[0.02em] transition-colors duration-150',
+                isActive ? cn('font-medium', countryTextClass[key]) : 'font-normal text-muted'
+              )}
             >
               {meta.name}
             </span>
             <span
-              style={{
-                fontSize: '0.6rem',
-                color: isActive ? meta.colorVar : 'transparent',
-                fontFamily: '"DM Mono", monospace',
-                transition: 'color 0.15s ease',
-              }}
+              className={cn(
+                'text-[0.6rem] font-mono transition-colors duration-150',
+                isActive ? countryTextClass[key] : 'text-transparent'
+              )}
             >
               {meta.dates}
             </span>
             {/* Active indicator */}
             <span
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                left: '12px',
-                right: '12px',
-                height: '2px',
-                borderRadius: '9999px',
-                backgroundColor: meta.colorVar,
-                transform: isActive ? 'scaleX(1)' : 'scaleX(0)',
-                transition: 'transform 0.2s ease',
-              }}
+              className={cn(
+                'absolute bottom-0 left-3 right-3 h-0.5 rounded-full transition-transform duration-200',
+                countryBgClass[key],
+                isActive ? 'scale-x-100' : 'scale-x-0'
+              )}
             />
           </button>
         );

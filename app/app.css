@@ -15,9 +15,7 @@
   --color-gold-light: #EDB832;
   --color-success: #4CAF7D;
   --color-danger: #E05252;
-}
 
-:root {
   --color-kl: #E8001F;
   --color-hcmc: #DA251D;
   --color-hanoi: #DA251D;
@@ -26,9 +24,9 @@
 
 html,
 body {
-  background-color: #0A0A08;
-  color: #F5F0E8;
-  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -85,4 +83,13 @@ body {
 }
 .section-enter {
   animation: fadeIn 0.2s ease forwards;
+}
+
+/* Custom gradient utilities */
+@utility bg-danger-gradient {
+  background: linear-gradient(135deg, rgba(224, 82, 82, 0.1) 0%, rgba(20, 20, 16, 0.9) 100%);
+}
+
+@utility bg-gold-gradient {
+  background: linear-gradient(135deg, rgba(212, 160, 23, 0.08) 0%, rgba(20, 20, 16, 0.95) 100%);
 }

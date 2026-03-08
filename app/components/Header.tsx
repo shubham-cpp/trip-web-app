@@ -1,3 +1,5 @@
+import { cn } from '~/lib/utils';
+
 const TRIP_START = new Date('2026-03-21T00:00:00+05:30');
 const TRIP_END = new Date('2026-03-31T23:59:59+05:30');
 
@@ -20,43 +22,24 @@ export function Header() {
   const status = getTripStatus();
 
   return (
-    <div
-      className="flex items-center justify-between px-4 py-3"
-      style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}
-    >
+    <div className="flex items-center justify-between px-4 py-3 border-b border-border">
       <div>
-        <span
-          style={{
-            fontFamily: '"Cormorant Garamond", Georgia, serif',
-            fontStyle: 'italic',
-            fontSize: '1.15rem',
-            fontWeight: 600,
-            color: '#F5F0E8',
-            letterSpacing: '-0.01em',
-          }}
-        >
+        <span className="font-display italic text-[1.15rem] font-semibold text-foreground tracking-[-0.01em]">
           SE Asia{' '}
-          <span style={{ color: '#D4A017' }}>'26</span>
+          <span className="text-gold">'26</span>
         </span>
       </div>
       <div className="flex items-center gap-3">
-        <span style={{ fontSize: '0.72rem', color: '#7A776C', fontFamily: '"DM Mono", monospace' }}>
+        <span className="text-[0.72rem] text-muted font-mono">
           Mar 21–31
         </span>
         <span
-          style={{
-            fontSize: '0.68rem',
-            fontFamily: '"DM Mono", monospace',
-            padding: '2px 8px',
-            borderRadius: '999px',
-            backgroundColor: status.highlight
-              ? 'rgba(212, 160, 23, 0.15)'
-              : 'rgba(255, 255, 255, 0.06)',
-            color: status.highlight ? '#D4A017' : '#7A776C',
-            border: status.highlight
-              ? '1px solid rgba(212, 160, 23, 0.3)'
-              : '1px solid rgba(255, 255, 255, 0.1)',
-          }}
+          className={cn(
+            'text-[0.68rem] font-mono px-2 py-0.5 rounded-full border',
+            status.highlight
+              ? 'bg-gold/15 text-gold border-gold/30'
+              : 'bg-white/6 text-muted border-white/10'
+          )}
         >
           {status.label}
         </span>

@@ -1,5 +1,5 @@
 export type CountryKey = 'kl' | 'hcmc' | 'hanoi' | 'bangkok';
-export type TopicKey = 'transport' | 'money' | 'food' | 'scams' | 'activities' | 'sim';
+export type TopicKey = 'transport' | 'money' | 'food' | 'scams' | 'activities';
 export type VerdictType = 'recommended' | 'budget' | 'optional' | 'skip';
 
 export interface CountryMeta {
@@ -80,25 +80,12 @@ export interface Activity {
   note?: string;
 }
 
-export interface SIMData {
-  carrier: string;
-  plan: string;
-  data: string;
-  validity: string;
-  price: string;
-  priceINR: string;
-  why: string;
-  whereToBuy: string;
-  note?: string;
-}
-
 export interface CountryData {
   transport: TransportData;
   money: MoneyData;
   food: FoodData;
   scams: Scam[];
   activities: Activity[];
-  sim: SIMData;
 }
 
 export interface CardStrategy {
@@ -277,17 +264,6 @@ export const tripData: Record<CountryKey, CountryData> = {
       { name: 'KL Forest Eco Park (Canopy Walk)', cost: '~₹770', verdict: 'optional', note: 'Primary rainforest inside the city, 200m canopy walk. Closed Fridays.' },
       { name: 'KL Tower', cost: '~₹670', verdict: 'optional', note: 'Better views than Petronas because you can see the towers. Skip if budget is tight.' },
     ],
-    sim: {
-      carrier: 'CelcomDigi',
-      plan: 'Tourist 65 GB',
-      data: '65 GB',
-      validity: '30 days',
-      price: 'RM 49 (RM 39 + RM 10 SIM)',
-      priceINR: '~₹945',
-      why: 'Best 4G/5G coverage in Malaysia. More data than you\'ll need for 3 days.',
-      whereToBuy: 'SIM counters at KLIA2 — open 24 hours. Passport + fingerprint required.',
-      note: 'Some counters (Tune Talk, Bluecube) accept cash only. Have some MYR ready.',
-    },
   },
 
   hcmc: {
@@ -398,17 +374,6 @@ export const tripData: Record<CountryKey, CountryData> = {
       { name: 'Cho Lon / Thien Hau Pagoda', cost: 'FREE', verdict: 'optional', note: 'Less touristy Chinatown. Beautiful pagoda, great street food. 30k VND Grab ride.' },
       { name: 'Bitexco Skydeck', cost: '₹840', verdict: 'skip', note: 'Rooftop cafes and the waterfront give nearly identical views for ₹200 or free.' },
     ],
-    sim: {
-      carrier: 'Viettel',
-      plan: 'TOUR200',
-      data: '5 GB/day',
-      validity: '7 days',
-      price: '200,000 VND',
-      priceINR: '~₹680',
-      why: '95–99% coverage including rural. Critical for the Ninh Binh day trip — good 4G at Tam Coc and Trang An.',
-      whereToBuy: 'Viettel official booth in T2 International Arrivals. Walk past the first kiosks outside customs — those are resellers. Go to the official carrier counter.',
-      note: 'This SIM works in Hanoi. No need to buy a new one when you fly north.',
-    },
   },
 
   hanoi: {
@@ -519,17 +484,6 @@ export const tripData: Record<CountryKey, CountryData> = {
       { name: 'Water Puppet Show', cost: '₹340–560', verdict: 'optional', note: '50-min show at Thang Long Theater. Uniquely Vietnamese art form. Most visitors say worth it.' },
       { name: 'Temple of Literature', cost: '₹100', verdict: 'optional', note: 'Vietnam\'s first university, 1070 AD. Beautiful courtyard architecture. 30 min visit.' },
     ],
-    sim: {
-      carrier: 'Viettel (from HCMC)',
-      plan: 'Same SIM — already active',
-      data: '5 GB/day',
-      validity: 'Still valid',
-      price: 'Already paid',
-      priceINR: '—',
-      why: 'Your HCMC SIM works nationwide. No need to buy a new one.',
-      whereToBuy: 'If arriving directly in Hanoi: Viettel booth at Noi Bai airport, same TOUR200 plan for 200,000 VND (~₹680).',
-      note: 'Vinaphone is also reliable in Hanoi as a backup.',
-    },
   },
 
   bangkok: {
@@ -544,7 +498,7 @@ export const tripData: Record<CountryKey, CountryData> = {
           duration: '~30 min + BTS',
           verdict: 'recommended',
           verdictLabel: 'Take this',
-          tip: 'Follow "Train to City" signs down to Basement Level B. Handle SuperRich exchange and SIM here first. Tap contactless Visa/MC at fare gates — no token needed. Phayathai (45 THB) → BTS to Siam/Silom. Makkasan (35 THB) → MRT to Sukhumvit/Chinatown.',
+          tip: 'Follow "Train to City" signs down to Basement Level B. Handle SuperRich exchange here first. Tap contactless Visa/MC at fare gates — no token needed. Phayathai (45 THB) → BTS to Siam/Silom. Makkasan (35 THB) → MRT to Sukhumvit/Chinatown.',
         },
         {
           name: 'S1 Public Bus',
@@ -649,16 +603,5 @@ export const tripData: Record<CountryKey, CountryData> = {
       { name: 'Wat Traimit (gold Buddha)', cost: '₹115', verdict: 'optional', note: 'World\'s largest solid gold Buddha (5.5 tons). Quick 30-min visit, in Chinatown.' },
       { name: 'MahaNakhon Skywalk', cost: '₹2,900–3,500', verdict: 'skip', note: 'Wat Saket gives 360° views for ₹145. This is pure tourist tax.' },
     ],
-    sim: {
-      carrier: 'AIS',
-      plan: 'Tourist SIM 15 GB',
-      data: '15 GB + unlimited throttled',
-      validity: '7 days',
-      price: '299 THB',
-      priceINR: '~₹865',
-      why: 'Best nationwide coverage in Thailand. More than enough for 2.5 days. Includes unlimited local calls.',
-      whereToBuy: 'Counters in Arrivals Hall (past customs) OR basement level near ARL. Get it at the airport — you need Maps and Grab immediately.',
-      note: 'True/DTAC tourist SIMs include free travel insurance if registered within 24 hours (valid until Aug 2026). AIS has better coverage but no insurance perk.',
-    },
   },
 };

@@ -8,7 +8,6 @@ import { MoneySection } from '~/components/MoneySection';
 import { FoodSection } from '~/components/FoodSection';
 import { ScamsSection } from '~/components/ScamsSection';
 import { ActivitiesSection } from '~/components/ActivitiesSection';
-import { SIMSection } from '~/components/SIMSection';
 import type { CountryKey, TopicKey } from '~/data/trips';
 
 export function meta({}: Route.MetaArgs) {
@@ -23,29 +22,21 @@ export default function Home() {
   const [topic, setTopic] = useState<TopicKey>('transport');
 
   return (
-    <div style={{ minHeight: '100dvh', backgroundColor: '#0A0A08' }}>
+    <div className="min-h-dvh bg-surface">
       {/* Sticky navigation stack */}
-      <div
-        style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 50,
-          backgroundColor: '#0A0A08',
-        }}
-      >
+      <div className="sticky top-0 z-50 bg-surface">
         <Header />
         <CountryTabs active={country} onChange={setCountry} />
         <TopicTabs active={topic} onChange={setTopic} />
       </div>
 
       {/* Content */}
-      <main style={{ maxWidth: '480px', margin: '0 auto', paddingBottom: '32px' }}>
+      <main className="max-w-[480px] mx-auto pb-8">
         {topic === 'transport' && <TransportSection key={`transport-${country}`} country={country} />}
         {topic === 'money' && <MoneySection key={`money-${country}`} country={country} />}
         {topic === 'food' && <FoodSection key={`food-${country}`} country={country} />}
         {topic === 'scams' && <ScamsSection key={`scams-${country}`} country={country} />}
         {topic === 'activities' && <ActivitiesSection key={`activities-${country}`} country={country} />}
-        {topic === 'sim' && <SIMSection key={`sim-${country}`} country={country} />}
       </main>
     </div>
   );

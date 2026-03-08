@@ -10,70 +10,29 @@ export function ScamsSection({ country }: Props) {
   return (
     <div className="section-enter p-4 flex flex-col gap-4">
       {/* Section heading */}
-      <h2
-        style={{
-          fontFamily: '"Cormorant Garamond", Georgia, serif',
-          fontStyle: 'italic',
-          fontSize: '1.5rem',
-          fontWeight: 600,
-          color: '#F5F0E8',
-          lineHeight: 1.1,
-        }}
-      >
+      <h2 className="font-display italic text-2xl font-semibold text-foreground leading-tight">
         Scams & Safety
       </h2>
-      <p style={{ fontSize: '0.78rem', color: '#7A776C', lineHeight: 1.5, marginTop: '-8px' }}>
+      <p className="text-[0.78rem] text-muted leading-relaxed -mt-2">
         The ones that actually happen to tourists here.
       </p>
 
       {scams.map((scam, i) => (
         <div
           key={i}
-          style={{
-            backgroundColor: '#141410',
-            borderLeft: '3px solid #E05252',
-            borderTop: '1px solid rgba(255,255,255,0.06)',
-            borderRight: '1px solid rgba(255,255,255,0.06)',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
-            borderRadius: '0 12px 12px 0',
-            padding: '14px',
-          }}
+          className="bg-card border border-white/6 border-l-[3px] border-l-danger rounded-tr-xl rounded-br-xl p-3.5"
         >
-          <div
-            style={{
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: '#E05252',
-              marginBottom: '6px',
-            }}
-          >
+          <div className="text-[0.85rem] font-semibold text-danger mb-1.5">
             {scam.name}
           </div>
-          <p
-            style={{
-              fontSize: '0.78rem',
-              color: '#C8C4BA',
-              lineHeight: 1.6,
-              marginBottom: '10px',
-            }}
-          >
+          <p className="text-[0.78rem] text-[#C8C4BA] leading-relaxed mb-2.5">
             {scam.description}
           </p>
-          <div
-            style={{
-              display: 'flex',
-              gap: '8px',
-              alignItems: 'flex-start',
-              backgroundColor: 'rgba(76, 175, 125, 0.07)',
-              border: '1px solid rgba(76, 175, 125, 0.15)',
-              borderRadius: '8px',
-              padding: '8px 10px',
-            }}
-          >
-            <span style={{ fontSize: '0.72rem', color: '#4CAF7D', fontWeight: 600, flexShrink: 0, paddingTop: '1px' }}>
+          <div className="flex gap-2 items-start bg-success/7 border border-success/15 rounded-lg px-2.5 py-2">
+            <span className="text-[0.72rem] text-success font-semibold shrink-0 pt-px">
               ✓ Avoid:
             </span>
-            <span style={{ fontSize: '0.76rem', color: '#9E9A8E', lineHeight: 1.5 }}>
+            <span className="text-[0.76rem] text-[#9E9A8E] leading-relaxed">
               {scam.avoid}
             </span>
           </div>
@@ -81,16 +40,8 @@ export function ScamsSection({ country }: Props) {
       ))}
 
       {/* General rule */}
-      <div
-        style={{
-          backgroundColor: 'rgba(255,255,255,0.03)',
-          border: '1px solid rgba(255,255,255,0.07)',
-          borderRadius: '12px',
-          padding: '12px 14px',
-          marginTop: '4px',
-        }}
-      >
-        <p style={{ fontSize: '0.76rem', color: '#7A776C', lineHeight: 1.6, textAlign: 'center' }}>
+      <div className="bg-white/3 border border-border rounded-xl px-3.5 py-3 mt-1">
+        <p className="text-[0.76rem] text-muted leading-relaxed text-center">
           Universal rule: if it sounds too good to be true, it is. Friendly strangers who approach you near tourist spots are almost always running a scam.
         </p>
       </div>
