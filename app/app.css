@@ -1,15 +1,88 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", "Courier New", monospace;
+
+  --color-surface: #0A0A08;
+  --color-card: #141410;
+  --color-elevated: #1E1E1A;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-foreground: #F5F0E8;
+  --color-muted: #7A776C;
+  --color-gold: #D4A017;
+  --color-gold-light: #EDB832;
+  --color-success: #4CAF7D;
+  --color-danger: #E05252;
+}
+
+:root {
+  --color-kl: #E8001F;
+  --color-hcmc: #DA251D;
+  --color-hanoi: #DA251D;
+  --color-bangkok: #4E8ED4;
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  background-color: #0A0A08;
+  color: #F5F0E8;
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+* {
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar while keeping scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Verdict badges */
+.verdict-recommended {
+  background-color: rgba(76, 175, 125, 0.15);
+  color: #4CAF7D;
+  border: 1px solid rgba(76, 175, 125, 0.3);
+}
+.verdict-budget {
+  background-color: rgba(212, 160, 23, 0.12);
+  color: #D4A017;
+  border: 1px solid rgba(212, 160, 23, 0.3);
+}
+.verdict-optional {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #9E9A8E;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.verdict-skip {
+  background-color: rgba(224, 82, 82, 0.1);
+  color: #E05252;
+  border: 1px solid rgba(224, 82, 82, 0.25);
+}
+
+/* Activity verdict */
+.activity-must { background-color: rgba(76, 175, 125, 0.15); color: #4CAF7D; border: 1px solid rgba(76, 175, 125, 0.3); }
+.activity-optional { background-color: rgba(212, 160, 23, 0.12); color: #D4A017; border: 1px solid rgba(212, 160, 23, 0.3); }
+.activity-skip { background-color: rgba(224, 82, 82, 0.1); color: #E05252; border: 1px solid rgba(224, 82, 82, 0.25); }
+
+/* ATM verdict colors */
+.atm-free { color: #4CAF7D; }
+.atm-expensive { color: #D4A017; }
+.atm-avoid { color: #E05252; }
+
+/* Section fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-enter {
+  animation: fadeIn 0.2s ease forwards;
 }
