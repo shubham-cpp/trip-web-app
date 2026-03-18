@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MapPin } from '@lucide/svelte';
+	import MapsLink from './MapsLink.svelte';
 	import { cn } from '$lib/utils';
 	import { tripData, type CountryKey, type Activity } from '$lib/data/trips';
 
@@ -32,15 +32,7 @@
 			</span>
 			<div class="flex items-center gap-2 shrink-0">
 				{#if activity.mapsUrl}
-					<a
-						href={activity.mapsUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="inline-flex items-center text-[#5A5750] hover:text-[#9E9A8E] transition-colors"
-						aria-label={`Open ${activity.name} on Google Maps`}
-					>
-						<MapPin class="w-3.5 h-3.5" />
-					</a>
+					<MapsLink href={activity.mapsUrl} label={`Open ${activity.name} on Google Maps`} />
 				{/if}
 				<span
 					class={cn(

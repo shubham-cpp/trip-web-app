@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
+	import OfflineIndicator from './OfflineIndicator.svelte';
 
 	const TRIP_START = new Date('2026-03-21T00:00:00+05:30');
 	const TRIP_END = new Date('2026-03-31T23:59:59+05:30');
@@ -29,6 +30,7 @@
 		</span>
 	</div>
 	<div class="flex items-center gap-3">
+		<OfflineIndicator />
 		<span class="text-[0.72rem] text-muted font-mono">Mar 21–31</span>
 		<span
 			class={cn(
